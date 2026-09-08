@@ -1,5 +1,6 @@
 import com.sap.gateway.ip.core.customdev.util.Message
 import groovy.xml.MarkupBuilder
+import java.math.BigInteger
 
 def Message processData(Message message) {
     def messageBody = message.getBody(String)
