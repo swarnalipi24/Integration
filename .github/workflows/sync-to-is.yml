@@ -1,8 +1,8 @@
-name: Push iFlows to Integration Suite (SAP OData API)
+name: Push iFlows from IS_TEMP to Integration Suite
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '0 * * * *'
   push:
     branches:
       - IS_TEMP
@@ -12,8 +12,10 @@ jobs:
   upload-iflows:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout IS_TEMP Branch
         uses: actions/checkout@v4
+        with:
+          ref: IS_TEMP
 
       - name: Upload iFlows to Design Package
         env:
@@ -47,7 +49,7 @@ jobs:
           for dir in */ ; do
             IFLOW_ID="${dir%/}"
             if [ -d "${IFLOW_ID}/META-INF" ]; then
-              echo "Packaging iFlow: ${IFLOW_ID}"
+              echo "Packaging iFlow from IS_TEMP: ${IFLOW_ID}"
               
               # Zip the contents of the iFlow folder and convert to single-line Base64
               (cd "${IFLOW_ID}" && zip -rq "../${IFLOW_ID}.zip" .)
@@ -78,4 +80,3 @@ jobs:
               echo "Successfully synced ${IFLOW_ID}"
             fi
           done
-          
