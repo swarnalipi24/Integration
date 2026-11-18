@@ -1,0 +1,1170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:complexType name="OrderResponse">
+		<xs:sequence>
+			<xs:element ref="Header"/>
+			<xs:element ref="OrderResponseBody"/>
+		</xs:sequence>
+		<xs:attribute name="Version" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="2.0.2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="OrderResponse" type="OrderResponse"/>
+	<xs:complexType name="Header">
+		<xs:sequence>
+			<xs:element ref="ThisDocumentIdentifier"/>
+			<xs:element ref="ThisDocumentDateTime"/>
+			<xs:element ref="RequestingDocumentIdentifier" minOccurs="0"/>
+			<xs:element ref="RequestingDocumentDateTime" minOccurs="0"/>
+			<xs:element ref="From"/>
+			<xs:element ref="To"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Header" type="Header"/>
+	<xs:complexType name="OrderResponseBody">
+		<xs:sequence>
+			<xs:element ref="OrderResponseProperties"/>
+			<xs:element ref="OrderResponsePartners"/>
+			<xs:element ref="OrderResponseDetails"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="OrderResponseBody" type="OrderResponseBody"/>
+	<xs:complexType name="ThisDocumentIdentifier">
+		<xs:sequence>
+			<xs:element ref="DocumentIdentifier"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ThisDocumentIdentifier" type="ThisDocumentIdentifier"/>
+	<xs:complexType name="ThisDocumentDateTime">
+		<xs:sequence>
+			<xs:element ref="DateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ThisDocumentDateTime" type="ThisDocumentDateTime"/>
+	<xs:complexType name="RequestingDocumentIdentifier">
+		<xs:sequence>
+			<xs:element ref="DocumentIdentifier"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="RequestingDocumentIdentifier" type="RequestingDocumentIdentifier"/>
+	<xs:complexType name="RequestingDocumentDateTime">
+		<xs:sequence>
+			<xs:element ref="DateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="RequestingDocumentDateTime" type="RequestingDocumentDateTime"/>
+	<xs:complexType name="From">
+		<xs:sequence>
+			<xs:element ref="PartnerInformation"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="From" type="From"/>
+	<xs:complexType name="To">
+		<xs:sequence>
+			<xs:element ref="PartnerInformation"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="To" type="To"/>
+	<xs:complexType name="OrderResponseProperties">
+		<xs:sequence>
+			<xs:element ref="PurchaseOrderNumber"/>
+			<xs:element ref="Routing" minOccurs="0"/>
+			<xs:element ref="PurchaseOrderIssuedDate"/>
+			<xs:element ref="LanguageCode"/>
+			<xs:element ref="CurrencyCode"/>
+			<xs:element ref="BuyerSequenceNumber"/>
+			<xs:element ref="SellerSequenceNumber"/>
+			<xs:element ref="ReferenceInformation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ReleaseNumber" minOccurs="0"/>
+			<xs:element ref="MarketPlaceInformation" minOccurs="0"/>
+			<xs:element ref="SpecialInstructions" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="TransportMethodCode" minOccurs="0"/>
+			<xs:element ref="ShipmentTerms" minOccurs="0"/>
+			<xs:element ref="ConfirmedPrice" minOccurs="0"/>
+			<xs:element ref="PaymentTerms" minOccurs="0"/>
+			<xs:element ref="ShipWithPurchaseOrder" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="LetterOfCreditInformation" minOccurs="0"/>
+			<xs:element ref="CarrierToExclude" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="CountryOfFinalDestinationCode" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="OrderResponseProperties" type="OrderResponseProperties"/>
+	<xs:complexType name="OrderResponsePartners">
+		<xs:sequence>
+			<xs:element ref="Buyer"/>
+			<xs:element ref="Seller"/>
+			<xs:element ref="ShipTo"/>
+			<xs:element ref="Payer"/>
+			<xs:element ref="OtherPartner" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="OrderResponsePartners" type="OrderResponsePartners"/>
+	<xs:complexType name="OrderResponseDetails">
+		<xs:sequence>
+			<xs:element ref="OrderResponseProductLineItem" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="OrderResponseDetails" type="OrderResponseDetails"/>
+	<xs:complexType name="DocumentIdentifier" mixed="true"/>
+	<xs:element name="DocumentIdentifier" type="DocumentIdentifier"/>
+	<xs:complexType name="DateTime" mixed="true">
+		<xs:attribute name="DateTimeQualifier" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="On"/>
+					<xs:enumeration value="After"/>
+					<xs:enumeration value="Before"/>
+					<xs:enumeration value="OnOrAfter"/>
+					<xs:enumeration value="OnOrBefore"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="DateTime" type="DateTime"/>
+	<xs:complexType name="PartnerInformation">
+		<xs:sequence>
+			<xs:element ref="PartnerName" maxOccurs="unbounded"/>
+			<xs:element ref="PartnerIdentifier"/>
+			<xs:element ref="ContactInformation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="AddressInformation" minOccurs="0"/>
+			<xs:element ref="TaxInformation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="URL" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PartnerInformation" type="PartnerInformation"/>
+	<xs:complexType name="PurchaseOrderNumber">
+		<xs:sequence>
+			<xs:element ref="DocumentIdentifier"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PurchaseOrderNumber" type="PurchaseOrderNumber"/>
+	<xs:complexType name="Routing" mixed="true"/>
+	<xs:element name="Routing" type="Routing"/>
+	<xs:complexType name="PurchaseOrderIssuedDate">
+		<xs:sequence>
+			<xs:element ref="DateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PurchaseOrderIssuedDate" type="PurchaseOrderIssuedDate"/>
+	<xs:complexType name="LanguageCode" mixed="true">
+		<xs:attribute name="Domain" use="required"/>
+	</xs:complexType>
+	<xs:element name="LanguageCode" type="LanguageCode"/>
+	<xs:complexType name="CurrencyCode" mixed="true">
+		<xs:attribute name="Domain" use="required"/>
+	</xs:complexType>
+	<xs:element name="CurrencyCode" type="CurrencyCode"/>
+	<xs:complexType name="BuyerSequenceNumber" mixed="true"/>
+	<xs:element name="BuyerSequenceNumber" type="BuyerSequenceNumber"/>
+	<xs:complexType name="SellerSequenceNumber" mixed="true"/>
+	<xs:element name="SellerSequenceNumber" type="SellerSequenceNumber"/>
+	<xs:complexType name="ReferenceInformation">
+		<xs:sequence>
+			<xs:element ref="DocumentReference"/>
+		</xs:sequence>
+		<xs:attribute name="ReferenceType" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="Counter"/>
+					<xs:enumeration value="PRONumber"/>
+					<xs:enumeration value="VehicleID"/>
+					<xs:enumeration value="DeliveryNote"/>
+					<xs:enumeration value="PickUpNumber"/>
+					<xs:enumeration value="Authorization"/>
+					<xs:enumeration value="BookingNumber"/>
+					<xs:enumeration value="ReleaseNumber"/>
+					<xs:enumeration value="WaybillNumber"/>
+					<xs:enumeration value="ContractNumber"/>
+					<xs:enumeration value="LetterOfCredit"/>
+					<xs:enumeration value="LineItemNumber"/>
+					<xs:enumeration value="ShipmentNumber"/>
+					<xs:enumeration value="BollaDiConsegna"/>
+					<xs:enumeration value="ShipperPONumber"/>
+					<xs:enumeration value="LoadTenderNumber"/>
+					<xs:enumeration value="SupplierARNumber"/>
+					<xs:enumeration value="AppointmentNumber"/>
+					<xs:enumeration value="RequisitionNumber"/>
+					<xs:enumeration value="LoadPlanningNumber"/>
+					<xs:enumeration value="ShipmentIdentifier"/>
+					<xs:enumeration value="CustomerOrderNumber"/>
+					<xs:enumeration value="EndCustomerPONumber"/>
+					<xs:enumeration value="PurchaseOrderNumber"/>
+					<xs:enumeration value="SalesOrderReference"/>
+					<xs:enumeration value="SupplierOrderNumber"/>
+					<xs:enumeration value="ChangeSequenceNumber"/>
+					<xs:enumeration value="SellersInvoiceNumber"/>
+					<xs:enumeration value="RequestForQuoteNumber"/>
+					<xs:enumeration value="CarrierReferenceNumber"/>
+					<xs:enumeration value="CustomerMasterRecordNumber"/>
+					<xs:enumeration value="EngineeringChangeOrderNumber"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="ReferenceInformation" type="ReferenceInformation"/>
+	<xs:complexType name="ReleaseNumber" mixed="true"/>
+	<xs:element name="ReleaseNumber" type="ReleaseNumber"/>
+	<xs:complexType name="MarketPlaceInformation">
+		<xs:sequence>
+			<xs:element ref="MarketPlaceIdentifier"/>
+			<xs:element ref="MarketPlaceDocumentReference"/>
+			<xs:element ref="MarketPlaceSellerIdentifier"/>
+			<xs:element ref="MarketPlaceBuyerIdentifier"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="MarketPlaceInformation" type="MarketPlaceInformation"/>
+	<xs:complexType name="SpecialInstructions" mixed="true">
+		<xs:attribute name="InstructionType" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="General"/>
+					<xs:enumeration value="Tolerances"/>
+					<xs:enumeration value="ShortLeadTime"/>
+					<xs:enumeration value="BollaDiConsegna"/>
+					<xs:enumeration value="CoAInstructions"/>
+					<xs:enumeration value="AmountDescription"/>
+					<xs:enumeration value="DriverInstructions"/>
+					<xs:enumeration value="ImportInstructions"/>
+					<xs:enumeration value="LoaderInstructions"/>
+					<xs:enumeration value="CarrierInstructions"/>
+					<xs:enumeration value="InvoiceInstructions"/>
+					<xs:enumeration value="MarkingInstructions"/>
+					<xs:enumeration value="PaymentInstructions"/>
+					<xs:enumeration value="PostingInstructions"/>
+					<xs:enumeration value="RoutingInstructions"/>
+					<xs:enumeration value="ShipperInstructions"/>
+					<xs:enumeration value="CertifiedInvoiceText"/>
+					<xs:enumeration value="TrademarkInformation"/>
+					<xs:enumeration value="ConsigneeInstructions"/>
+					<xs:enumeration value="InspectionInstructions"/>
+					<xs:enumeration value="EmptyReturnInstructions"/>
+					<xs:enumeration value="CustomerServiceInstructions"/>
+					<xs:enumeration value="CustomerRequiredInstructions"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="SpecialInstructions" type="SpecialInstructions"/>
+	<xs:complexType name="TransportMethodCode" mixed="true">
+		<xs:attribute name="Domain" use="required"/>
+	</xs:complexType>
+	<xs:element name="TransportMethodCode" type="TransportMethodCode"/>
+	<xs:complexType name="ShipmentTerms">
+		<xs:sequence>
+			<xs:element ref="ShipmentTermsIdentifier"/>
+			<xs:element ref="ShipmentTermsLocation"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ShipmentTerms" type="ShipmentTerms"/>
+	<xs:complexType name="ConfirmedPrice">
+		<xs:sequence>
+			<xs:element ref="Pricing" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ConfirmedPrice" type="ConfirmedPrice"/>
+	<xs:complexType name="PaymentTerms">
+		<xs:sequence>
+			<xs:element ref="PaymentTermsOfSale"/>
+			<xs:element ref="PaymentTermsBasisDateCode" minOccurs="0"/>
+			<xs:element ref="PaymentTermsBasisDate" minOccurs="0"/>
+			<xs:element ref="Discounts" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Deferred" minOccurs="0"/>
+			<xs:element ref="Penalty" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PaymentTerms" type="PaymentTerms"/>
+	<xs:complexType name="ShipWithPurchaseOrder">
+		<xs:sequence>
+			<xs:element ref="DocumentReference"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ShipWithPurchaseOrder" type="ShipWithPurchaseOrder"/>
+	<xs:complexType name="LetterOfCreditInformation">
+		<xs:sequence>
+			<xs:element ref="DocumentReference"/>
+			<xs:element ref="AdvisingBank"/>
+			<xs:element ref="MonetaryAmount"/>
+			<xs:element ref="PaymentTerms" minOccurs="0"/>
+			<xs:element ref="LetterOfCreditQuantity" minOccurs="0"/>
+			<xs:element ref="ExchangeRate" minOccurs="0"/>
+			<xs:element ref="LetterOfCreditVoyageDateTime" minOccurs="0"/>
+			<xs:element ref="LetterOfCreditDateTime" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="LetterOfCreditInformation" type="LetterOfCreditInformation"/>
+	<xs:complexType name="CarrierToExclude">
+		<xs:sequence>
+			<xs:element ref="PartnerInformation"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CarrierToExclude" type="CarrierToExclude"/>
+	<xs:complexType name="CountryOfFinalDestinationCode" mixed="true">
+		<xs:attribute name="Domain" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="3166ISO"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="CountryOfFinalDestinationCode" type="CountryOfFinalDestinationCode"/>
+	<xs:complexType name="Buyer">
+		<xs:sequence>
+			<xs:element ref="PartnerInformation"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Buyer" type="Buyer"/>
+	<xs:complexType name="Seller">
+		<xs:sequence>
+			<xs:element ref="PartnerInformation"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Seller" type="Seller"/>
+	<xs:complexType name="ShipTo">
+		<xs:sequence>
+			<xs:element ref="PartnerInformation"/>
+			<xs:element ref="UnloadingPoint" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ShipTo" type="ShipTo"/>
+	<xs:complexType name="Payer">
+		<xs:sequence>
+			<xs:element ref="PartnerInformation"/>
+			<xs:element ref="AccountInformation" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Payer" type="Payer"/>
+	<xs:complexType name="OtherPartner">
+		<xs:sequence>
+			<xs:element ref="PartnerInformation"/>
+		</xs:sequence>
+		<xs:attribute name="PartnerRole" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="Bank"/>
+					<xs:enumeration value="Buyer"/>
+					<xs:enumeration value="Payer"/>
+					<xs:enumeration value="Scales"/>
+					<xs:enumeration value="Seller"/>
+					<xs:enumeration value="Sender"/>
+					<xs:enumeration value="ShipTo"/>
+					<xs:enumeration value="SoldTo"/>
+					<xs:enumeration value="Carrier"/>
+					<xs:enumeration value="Shipper"/>
+					<xs:enumeration value="Receiver"/>
+					<xs:enumeration value="ShipFrom"/>
+					<xs:enumeration value="Supplier"/>
+					<xs:enumeration value="Surveyor"/>
+					<xs:enumeration value="Consignee"/>
+					<xs:enumeration value="Inspection"/>
+					<xs:enumeration value="BillToParty"/>
+					<xs:enumeration value="CareOfParty"/>
+					<xs:enumeration value="Marketplace"/>
+					<xs:enumeration value="NotifyParty"/>
+					<xs:enumeration value="Manufacturer"/>
+					<xs:enumeration value="CustomsBroker"/>
+					<xs:enumeration value="AgencyOrDealer"/>
+					<xs:enumeration value="BeneficialOwner"/>
+					<xs:enumeration value="CommodityBroker"/>
+					<xs:enumeration value="AlternateCarrier"/>
+					<xs:enumeration value="FreightForwarder"/>
+					<xs:enumeration value="AdditionalCarrier"/>
+					<xs:enumeration value="UltimateConsignee"/>
+					<xs:enumeration value="LetterOfCreditBank"/>
+					<xs:enumeration value="ThirdPartyLogistics"/>
+					<xs:enumeration value="FinancialInstitution"/>
+					<xs:enumeration value="TransportationBroker"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="OtherPartner" type="OtherPartner"/>
+	<xs:complexType name="OrderResponseProductLineItem">
+		<xs:sequence>
+			<xs:element ref="LineNumber"/>
+			<xs:element ref="LineItemType" minOccurs="0"/>
+			<xs:element ref="PurchaseOrderLineItemNumber"/>
+			<xs:element ref="ReleaseNumber" minOccurs="0"/>
+			<xs:element ref="ProductIdentification" maxOccurs="unbounded"/>
+			<xs:element ref="ReferenceInformation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="SalesOrderIdentifier" minOccurs="0"/>
+			<xs:element ref="ProductQuantity"/>
+			<xs:element ref="PackagingQuantity" minOccurs="0"/>
+			<xs:element ref="BatchNumber" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="CountryOfOriginCode" minOccurs="0"/>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="ScheduleLineDetails"/>
+				<xs:element ref="ScheduleDateTimeInformation"/>
+			</xs:choice>
+			<xs:element ref="ShipTo" minOccurs="0"/>
+			<xs:element ref="OtherPartner" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="DeliveryTolerances" minOccurs="0"/>
+			<xs:element ref="ShipmentTerms" minOccurs="0"/>
+			<xs:element ref="TransportInformation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ConfirmedPrice" minOccurs="0"/>
+			<xs:element ref="PaymentTerms" minOccurs="0"/>
+			<xs:element ref="TaxableFlag" minOccurs="0"/>
+			<xs:element ref="RequestedDocument" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Routing" minOccurs="0"/>
+			<xs:element ref="BalanceItemFlag" minOccurs="0"/>
+			<xs:element ref="DutyStatus" minOccurs="0"/>
+			<xs:element ref="ImportLicenseNeededFlag" minOccurs="0"/>
+			<xs:element ref="ImportLicenseAvailableFlag" minOccurs="0"/>
+			<xs:element ref="SecondWeightFlag" minOccurs="0"/>
+			<xs:element ref="CustomerRequestedDeliveryHoldFlag" minOccurs="0"/>
+			<xs:element ref="AccompanyingSampleIndicator" minOccurs="0"/>
+			<xs:element ref="SpecialFulfillmentRequestCode" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="CountryOfFinalDestinationCode" minOccurs="0"/>
+			<xs:element ref="DeliveryGroup" minOccurs="0"/>
+			<xs:element ref="SpecialInstructions" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="LineStatus" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="OrderResponseProductLineItem" type="OrderResponseProductLineItem"/>
+	<xs:complexType name="PartnerName" mixed="true"/>
+	<xs:element name="PartnerName" type="PartnerName"/>
+	<xs:complexType name="PartnerIdentifier" mixed="true">
+		<xs:attribute name="Agency" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="D-U-N-S"/>
+					<xs:enumeration value="AssignedByBuyer"/>
+					<xs:enumeration value="AssignedBySupplier"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="PartnerIdentifier" type="PartnerIdentifier"/>
+	<xs:complexType name="ContactInformation">
+		<xs:sequence>
+			<xs:element ref="ContactName" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ContactDescription" minOccurs="0"/>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="TelephoneNumber"/>
+				<xs:element ref="FaxNumber"/>
+				<xs:element ref="EmailAddress"/>
+				<xs:element ref="AlternativeCommunicationMethod"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ContactInformation" type="ContactInformation"/>
+	<xs:complexType name="AddressInformation">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element ref="AddressLine" maxOccurs="unbounded"/>
+				<xs:element ref="PostBoxNumber"/>
+			</xs:choice>
+			<xs:element ref="CityName"/>
+			<xs:element ref="StateOrProvince" minOccurs="0"/>
+			<xs:element ref="PostalCode" minOccurs="0"/>
+			<xs:element ref="PostalCountry"/>
+			<xs:element ref="LocationCode" minOccurs="0"/>
+			<xs:element ref="Comment" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="AddressInformation" type="AddressInformation"/>
+	<xs:complexType name="TaxInformation">
+		<xs:sequence>
+			<xs:element ref="TaxIdentifierNumber"/>
+			<xs:element ref="Jurisdiction" minOccurs="0"/>
+			<xs:element ref="TaxCertificateType" minOccurs="0"/>
+			<xs:element ref="TaxCertificateNumber" minOccurs="0"/>
+			<xs:element ref="TaxBasis" minOccurs="0"/>
+			<xs:element ref="TaxRate" minOccurs="0"/>
+			<xs:element ref="EffectiveDates" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="TaxInformation" type="TaxInformation"/>
+	<xs:complexType name="URL" mixed="true"/>
+	<xs:element name="URL" type="URL"/>
+	<xs:complexType name="DocumentReference">
+		<xs:sequence>
+			<xs:element ref="DocumentIdentifier"/>
+			<xs:element ref="DateTime" minOccurs="0"/>
+			<xs:element ref="ReferenceItem" minOccurs="0"/>
+			<xs:element ref="ReleaseNumber" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DocumentReference" type="DocumentReference"/>
+	<xs:complexType name="MarketPlaceIdentifier" mixed="true"/>
+	<xs:element name="MarketPlaceIdentifier" type="MarketPlaceIdentifier"/>
+	<xs:complexType name="MarketPlaceDocumentReference">
+		<xs:sequence>
+			<xs:element ref="DocumentReference"/>
+		</xs:sequence>
+		<xs:attribute name="ReferenceType" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="PRONumber"/>
+					<xs:enumeration value="DeliveryNote"/>
+					<xs:enumeration value="PickUpNumber"/>
+					<xs:enumeration value="Authorization"/>
+					<xs:enumeration value="BookingNumber"/>
+					<xs:enumeration value="ReleaseNumber"/>
+					<xs:enumeration value="WaybillNumber"/>
+					<xs:enumeration value="ContractNumber"/>
+					<xs:enumeration value="LetterOfCredit"/>
+					<xs:enumeration value="LineItemNumber"/>
+					<xs:enumeration value="LoadTenderNumber"/>
+					<xs:enumeration value="AppointmentNumber"/>
+					<xs:enumeration value="RequisitionNumber"/>
+					<xs:enumeration value="LoadPlanningNumber"/>
+					<xs:enumeration value="ShipmentIdentifier"/>
+					<xs:enumeration value="CustomerOrderNumber"/>
+					<xs:enumeration value="PurchaseOrderNumber"/>
+					<xs:enumeration value="SalesOrderReference"/>
+					<xs:enumeration value="ChangeSequenceNumber"/>
+					<xs:enumeration value="SellersInvoiceNumber"/>
+					<xs:enumeration value="RequestForQuoteNumber"/>
+					<xs:enumeration value="CarrierReferenceNumber"/>
+					<xs:enumeration value="CustomerMasterRecordNumber"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="MarketPlaceDocumentReference" type="MarketPlaceDocumentReference"/>
+	<xs:complexType name="MarketPlaceSellerIdentifier" mixed="true"/>
+	<xs:element name="MarketPlaceSellerIdentifier" type="MarketPlaceSellerIdentifier"/>
+	<xs:complexType name="MarketPlaceBuyerIdentifier" mixed="true"/>
+	<xs:element name="MarketPlaceBuyerIdentifier" type="MarketPlaceBuyerIdentifier"/>
+	<xs:complexType name="ShipmentTermsIdentifier" mixed="true"/>
+	<xs:element name="ShipmentTermsIdentifier" type="ShipmentTermsIdentifier"/>
+	<xs:complexType name="ShipmentTermsLocation" mixed="true"/>
+	<xs:element name="ShipmentTermsLocation" type="ShipmentTermsLocation"/>
+	<xs:complexType name="Pricing">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element ref="PricingLumpSum"/>
+				<xs:element ref="PricingPerUnit"/>
+				<xs:sequence>
+					<xs:element ref="PricingPercentage"/>
+					<xs:element ref="PercentageBasis"/>
+				</xs:sequence>
+			</xs:choice>
+			<xs:element ref="PriceReason" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="PriceType" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="Taxes"/>
+					<xs:enumeration value="VATTax"/>
+					<xs:enumeration value="FOBPrice"/>
+					<xs:enumeration value="NetPrice"/>
+					<xs:enumeration value="GrossPrice"/>
+					<xs:enumeration value="FreightCost"/>
+					<xs:enumeration value="PackageCosts"/>
+					<xs:enumeration value="FreightAllowance"/>
+					<xs:enumeration value="FreightInsurance"/>
+					<xs:enumeration value="GeneralAllowance"/>
+					<xs:enumeration value="NetPriceIncludingTax"/>
+					<xs:enumeration value="UpchargeorDiscountPerUnit"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Pricing" type="Pricing"/>
+	<xs:complexType name="PaymentTermsOfSale" mixed="true"/>
+	<xs:element name="PaymentTermsOfSale" type="PaymentTermsOfSale"/>
+	<xs:complexType name="PaymentTermsBasisDateCode" mixed="true">
+		<xs:attribute name="Domain" use="required"/>
+	</xs:complexType>
+	<xs:element name="PaymentTermsBasisDateCode" type="PaymentTermsBasisDateCode"/>
+	<xs:complexType name="PaymentTermsBasisDate">
+		<xs:sequence>
+			<xs:element ref="DateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PaymentTermsBasisDate" type="PaymentTermsBasisDate"/>
+	<xs:complexType name="Discounts">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element ref="PercentDiscount"/>
+				<xs:element ref="DiscountAmount"/>
+			</xs:choice>
+			<xs:choice>
+				<xs:element ref="DaysDue"/>
+				<xs:element ref="DiscountsDueDate"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Discounts" type="Discounts"/>
+	<xs:complexType name="Deferred">
+		<xs:sequence>
+			<xs:element ref="DeferredAmount"/>
+			<xs:element ref="DeferredDueDate"/>
+			<xs:element ref="PercentDeferredPayable"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Deferred" type="Deferred"/>
+	<xs:complexType name="Penalty" mixed="true"/>
+	<xs:element name="Penalty" type="Penalty"/>
+	<xs:complexType name="AdvisingBank">
+		<xs:sequence>
+			<xs:element ref="PartnerInformation"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="AdvisingBank" type="AdvisingBank"/>
+	<xs:complexType name="MonetaryAmount">
+		<xs:sequence>
+			<xs:element ref="MonetaryValue"/>
+			<xs:element ref="CurrencyCode"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="MonetaryAmount" type="MonetaryAmount"/>
+	<xs:complexType name="LetterOfCreditQuantity">
+		<xs:sequence>
+			<xs:element ref="MeasurementInformation"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="LetterOfCreditQuantity" type="LetterOfCreditQuantity"/>
+	<xs:complexType name="ExchangeRate" mixed="true"/>
+	<xs:element name="ExchangeRate" type="ExchangeRate"/>
+	<xs:complexType name="LetterOfCreditVoyageDateTime">
+		<xs:sequence>
+			<xs:element ref="DateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="LetterOfCreditVoyageDateTime" type="LetterOfCreditVoyageDateTime"/>
+	<xs:complexType name="LetterOfCreditDateTime">
+		<xs:sequence>
+			<xs:element ref="DateTimeInformation"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="LetterOfCreditDateTime" type="LetterOfCreditDateTime"/>
+	<xs:complexType name="UnloadingPoint" mixed="true"/>
+	<xs:element name="UnloadingPoint" type="UnloadingPoint"/>
+	<xs:complexType name="AccountInformation">
+		<xs:sequence>
+			<xs:element ref="AccountHolderName" maxOccurs="unbounded"/>
+			<xs:choice>
+				<xs:element ref="FinancialInstitutionIdentification" minOccurs="0"/>
+				<xs:element ref="CreditCardInformation" minOccurs="0"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="AccountInformation" type="AccountInformation"/>
+	<xs:complexType name="LineNumber" mixed="true"/>
+	<xs:element name="LineNumber" type="LineNumber"/>
+	<xs:complexType name="LineItemType" mixed="true"/>
+	<xs:element name="LineItemType" type="LineItemType"/>
+	<xs:complexType name="PurchaseOrderLineItemNumber" mixed="true"/>
+	<xs:element name="PurchaseOrderLineItemNumber" type="PurchaseOrderLineItemNumber"/>
+	<xs:complexType name="ProductIdentification">
+		<xs:sequence>
+			<xs:element ref="ProductIdentifier"/>
+			<xs:element ref="ProductName" minOccurs="0"/>
+			<xs:element ref="ProductDescription" minOccurs="0"/>
+			<xs:element ref="ProductGradeDescription" minOccurs="0"/>
+			<xs:element ref="ProductClassification" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="Agency" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="EAN"/>
+					<xs:enumeration value="ISO"/>
+					<xs:enumeration value="ANSI"/>
+					<xs:enumeration value="GBABA"/>
+					<xs:enumeration value="Other"/>
+					<xs:enumeration value="EDIFACT"/>
+					<xs:enumeration value="AssignedByBuyer"/>
+					<xs:enumeration value="AssignedBySeller"/>
+					<xs:enumeration value="AssignedByManufacturer"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="ProductIdentification" type="ProductIdentification"/>
+	<xs:complexType name="SalesOrderIdentifier">
+		<xs:sequence>
+			<xs:element ref="DocumentReference"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="SalesOrderIdentifier" type="SalesOrderIdentifier"/>
+	<xs:complexType name="ProductQuantity">
+		<xs:sequence>
+			<xs:element ref="Measurement"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ProductQuantity" type="ProductQuantity"/>
+	<xs:complexType name="PackagingQuantity">
+		<xs:sequence>
+			<xs:element ref="Measurement"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PackagingQuantity" type="PackagingQuantity"/>
+	<xs:complexType name="BatchNumber" mixed="true">
+		<xs:attribute name="BatchNumberCreator" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="Seller"/>
+					<xs:enumeration value="Manufacturer"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="BatchNumber" type="BatchNumber"/>
+	<xs:complexType name="CountryOfOriginCode" mixed="true">
+		<xs:attribute name="Domain" use="required"/>
+	</xs:complexType>
+	<xs:element name="CountryOfOriginCode" type="CountryOfOriginCode"/>
+	<xs:complexType name="ScheduleLineDetails">
+		<xs:sequence>
+			<xs:element ref="ScheduleLineIdentifier"/>
+			<xs:element ref="SalesOrderIdentifier" minOccurs="0"/>
+			<xs:element ref="ProductQuantity"/>
+			<xs:element ref="ScheduleDateTimeInformation"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ScheduleLineDetails" type="ScheduleLineDetails"/>
+	<xs:complexType name="ScheduleDateTimeInformation">
+		<xs:sequence>
+			<xs:element ref="DateTimeInformation"/>
+		</xs:sequence>
+		<xs:attribute name="ScheduleType">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="ConfirmShip"/>
+					<xs:enumeration value="ConfirmPickup"/>
+					<xs:enumeration value="RequestedShip"/>
+					<xs:enumeration value="ConfirmDelivery"/>
+					<xs:enumeration value="RequestedPickup"/>
+					<xs:enumeration value="RequestedDelivery"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="ScheduleDateTimeInformation" type="ScheduleDateTimeInformation"/>
+	<xs:complexType name="DeliveryTolerances">
+		<xs:sequence>
+			<xs:element ref="MeasurementRange"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DeliveryTolerances" type="DeliveryTolerances"/>
+	<xs:complexType name="TransportInformation">
+		<xs:sequence>
+			<xs:element ref="TransportStepNumber"/>
+			<xs:element ref="TransportMethodCode"/>
+			<xs:element ref="Carrier" minOccurs="0"/>
+			<xs:element ref="LocationFrom"/>
+			<xs:element ref="LocationTo"/>
+			<xs:element ref="CarrierEquipmentCode" minOccurs="0"/>
+			<xs:element ref="ReferenceInformation" minOccurs="0"/>
+			<xs:element ref="TransportName" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="StageIdentifier">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="Main"/>
+					<xs:enumeration value="Final"/>
+					<xs:enumeration value="Primary"/>
+					<xs:enumeration value="Secondary"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="TransportInformation" type="TransportInformation"/>
+	<xs:complexType name="TaxableFlag" mixed="true"/>
+	<xs:element name="TaxableFlag" type="TaxableFlag"/>
+	<xs:complexType name="RequestedDocument">
+		<xs:sequence>
+			<xs:element ref="RequestedDocumentTypeCode"/>
+			<xs:element ref="DocumentRecipientInformation" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="RequestedDocument" type="RequestedDocument"/>
+	<xs:complexType name="BalanceItemFlag" mixed="true"/>
+	<xs:element name="BalanceItemFlag" type="BalanceItemFlag"/>
+	<xs:complexType name="DutyStatus" mixed="true"/>
+	<xs:element name="DutyStatus" type="DutyStatus"/>
+	<xs:complexType name="ImportLicenseNeededFlag" mixed="true"/>
+	<xs:element name="ImportLicenseNeededFlag" type="ImportLicenseNeededFlag"/>
+	<xs:complexType name="ImportLicenseAvailableFlag" mixed="true"/>
+	<xs:element name="ImportLicenseAvailableFlag" type="ImportLicenseAvailableFlag"/>
+	<xs:complexType name="SecondWeightFlag" mixed="true"/>
+	<xs:element name="SecondWeightFlag" type="SecondWeightFlag"/>
+	<xs:complexType name="CustomerRequestedDeliveryHoldFlag" mixed="true"/>
+	<xs:element name="CustomerRequestedDeliveryHoldFlag" type="CustomerRequestedDeliveryHoldFlag"/>
+	<xs:complexType name="AccompanyingSampleIndicator" mixed="true"/>
+	<xs:element name="AccompanyingSampleIndicator" type="AccompanyingSampleIndicator"/>
+	<xs:complexType name="SpecialFulfillmentRequestCode" mixed="true">
+		<xs:attribute name="Domain" use="required"/>
+	</xs:complexType>
+	<xs:element name="SpecialFulfillmentRequestCode" type="SpecialFulfillmentRequestCode"/>
+	<xs:complexType name="DeliveryGroup" mixed="true"/>
+	<xs:element name="DeliveryGroup" type="DeliveryGroup"/>
+	<xs:complexType name="LineStatus" mixed="true"/>
+	<xs:element name="LineStatus" type="LineStatus"/>
+	<xs:complexType name="ContactName" mixed="true"/>
+	<xs:element name="ContactName" type="ContactName"/>
+	<xs:complexType name="ContactDescription" mixed="true"/>
+	<xs:element name="ContactDescription" type="ContactDescription"/>
+	<xs:complexType name="TelephoneNumber">
+		<xs:sequence>
+			<xs:element ref="NationalPhoneNumber"/>
+			<xs:element ref="InternationalPhoneNumber" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="TelephoneNumber" type="TelephoneNumber"/>
+	<xs:complexType name="FaxNumber">
+		<xs:sequence>
+			<xs:element ref="NationalPhoneNumber"/>
+			<xs:element ref="InternationalPhoneNumber" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="FaxNumber" type="FaxNumber"/>
+	<xs:complexType name="EmailAddress" mixed="true"/>
+	<xs:element name="EmailAddress" type="EmailAddress"/>
+	<xs:complexType name="AlternativeCommunicationMethod" mixed="true">
+		<xs:attribute name="CommunicationMethodType">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="Telex"/>
+					<xs:enumeration value="PrinterId"/>
+					<xs:enumeration value="StationCode"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="AlternativeCommunicationMethod" type="AlternativeCommunicationMethod"/>
+	<xs:complexType name="AddressLine" mixed="true"/>
+	<xs:element name="AddressLine" type="AddressLine"/>
+	<xs:complexType name="PostBoxNumber" mixed="true"/>
+	<xs:element name="PostBoxNumber" type="PostBoxNumber"/>
+	<xs:complexType name="CityName" mixed="true"/>
+	<xs:element name="CityName" type="CityName"/>
+	<xs:complexType name="StateOrProvince" mixed="true"/>
+	<xs:element name="StateOrProvince" type="StateOrProvince"/>
+	<xs:complexType name="PostalCode" mixed="true"/>
+	<xs:element name="PostalCode" type="PostalCode"/>
+	<xs:complexType name="PostalCountry" mixed="true"/>
+	<xs:element name="PostalCountry" type="PostalCountry"/>
+	<xs:complexType name="LocationCode" mixed="true">
+		<xs:attribute name="Domain" use="required"/>
+	</xs:complexType>
+	<xs:element name="LocationCode" type="LocationCode"/>
+	<xs:complexType name="Comment">
+		<xs:choice>
+			<xs:element ref="Content"/>
+			<xs:element ref="ExternalReference"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="Comment" type="Comment"/>
+	<xs:complexType name="TaxIdentifierNumber" mixed="true"/>
+	<xs:element name="TaxIdentifierNumber" type="TaxIdentifierNumber"/>
+	<xs:complexType name="Jurisdiction" mixed="true"/>
+	<xs:element name="Jurisdiction" type="Jurisdiction"/>
+	<xs:complexType name="TaxCertificateType" mixed="true"/>
+	<xs:element name="TaxCertificateType" type="TaxCertificateType"/>
+	<xs:complexType name="TaxCertificateNumber" mixed="true"/>
+	<xs:element name="TaxCertificateNumber" type="TaxCertificateNumber"/>
+	<xs:complexType name="TaxBasis" mixed="true"/>
+	<xs:element name="TaxBasis" type="TaxBasis"/>
+	<xs:complexType name="TaxRate" mixed="true"/>
+	<xs:element name="TaxRate" type="TaxRate"/>
+	<xs:complexType name="EffectiveDates">
+		<xs:sequence>
+			<xs:element ref="DateTimeInformation"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="EffectiveDates" type="EffectiveDates"/>
+	<xs:complexType name="ReferenceItem" mixed="true"/>
+	<xs:element name="ReferenceItem" type="ReferenceItem"/>
+	<xs:complexType name="PricingLumpSum">
+		<xs:sequence>
+			<xs:element ref="MonetaryAmount"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PricingLumpSum" type="PricingLumpSum"/>
+	<xs:complexType name="PricingPerUnit">
+		<xs:sequence>
+			<xs:element ref="MonetaryAmount"/>
+			<xs:element ref="PriceBasis"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PricingPerUnit" type="PricingPerUnit"/>
+	<xs:complexType name="PricingPercentage" mixed="true"/>
+	<xs:element name="PricingPercentage" type="PricingPercentage"/>
+	<xs:complexType name="PercentageBasis">
+		<xs:sequence>
+			<xs:element ref="MonetaryAmount"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PercentageBasis" type="PercentageBasis"/>
+	<xs:complexType name="PriceReason" mixed="true"/>
+	<xs:element name="PriceReason" type="PriceReason"/>
+	<xs:complexType name="PercentDiscount" mixed="true"/>
+	<xs:element name="PercentDiscount" type="PercentDiscount"/>
+	<xs:complexType name="DiscountAmount">
+		<xs:sequence>
+			<xs:element ref="MonetaryAmount"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DiscountAmount" type="DiscountAmount"/>
+	<xs:complexType name="DaysDue" mixed="true"/>
+	<xs:element name="DaysDue" type="DaysDue"/>
+	<xs:complexType name="DiscountsDueDate">
+		<xs:sequence>
+			<xs:element ref="DateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DiscountsDueDate" type="DiscountsDueDate"/>
+	<xs:complexType name="DeferredAmount">
+		<xs:sequence>
+			<xs:element ref="MonetaryAmount"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DeferredAmount" type="DeferredAmount"/>
+	<xs:complexType name="DeferredDueDate">
+		<xs:sequence>
+			<xs:element ref="DateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DeferredDueDate" type="DeferredDueDate"/>
+	<xs:complexType name="PercentDeferredPayable" mixed="true"/>
+	<xs:element name="PercentDeferredPayable" type="PercentDeferredPayable"/>
+	<xs:complexType name="MonetaryValue" mixed="true"/>
+	<xs:element name="MonetaryValue" type="MonetaryValue"/>
+	<xs:complexType name="MeasurementInformation">
+		<xs:choice>
+			<xs:element ref="SpecifiedMeasurement"/>
+			<xs:element ref="MeasurementRange"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="MeasurementInformation" type="MeasurementInformation"/>
+	<xs:complexType name="DateTimeInformation">
+		<xs:choice>
+			<xs:element ref="DateTime"/>
+			<xs:element ref="DateTimeRange"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="DateTimeInformation" type="DateTimeInformation"/>
+	<xs:complexType name="AccountHolderName" mixed="true"/>
+	<xs:element name="AccountHolderName" type="AccountHolderName"/>
+	<xs:complexType name="FinancialInstitutionIdentification">
+		<xs:sequence>
+			<xs:element ref="FinancialInstitutionName"/>
+			<xs:element ref="FinancialInstitutionDFINumber"/>
+			<xs:element ref="AccountNumber"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="FinancialInstitutionIdentification" type="FinancialInstitutionIdentification"/>
+	<xs:complexType name="CreditCardInformation">
+		<xs:sequence>
+			<xs:element ref="CreditCardProvider"/>
+			<xs:element ref="CreditCardNumber"/>
+			<xs:element ref="CreditCardExpirationDate"/>
+			<xs:element ref="CardHolderName"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CreditCardInformation" type="CreditCardInformation"/>
+	<xs:complexType name="ProductIdentifier" mixed="true"/>
+	<xs:element name="ProductIdentifier" type="ProductIdentifier"/>
+	<xs:complexType name="ProductName" mixed="true"/>
+	<xs:element name="ProductName" type="ProductName"/>
+	<xs:complexType name="ProductDescription" mixed="true"/>
+	<xs:element name="ProductDescription" type="ProductDescription"/>
+	<xs:complexType name="ProductGradeDescription" mixed="true"/>
+	<xs:element name="ProductGradeDescription" type="ProductGradeDescription"/>
+	<xs:complexType name="ProductClassification" mixed="true"/>
+	<xs:element name="ProductClassification" type="ProductClassification"/>
+	<xs:complexType name="Measurement">
+		<xs:sequence>
+			<xs:element ref="MeasurementValue"/>
+			<xs:element ref="UnitOfMeasureCode"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Measurement" type="Measurement"/>
+	<xs:complexType name="ScheduleLineIdentifier" mixed="true"/>
+	<xs:element name="ScheduleLineIdentifier" type="ScheduleLineIdentifier"/>
+	<xs:complexType name="MeasurementRange">
+		<xs:sequence>
+			<xs:element ref="MinimumMeasurement"/>
+			<xs:element ref="MaximumMeasurement"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="MeasurementRange" type="MeasurementRange"/>
+	<xs:complexType name="TransportStepNumber" mixed="true"/>
+	<xs:element name="TransportStepNumber" type="TransportStepNumber"/>
+	<xs:complexType name="Carrier">
+		<xs:sequence>
+			<xs:element ref="PartnerInformation"/>
+			<xs:element ref="StandardCarrierAlphaCode" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Carrier" type="Carrier"/>
+	<xs:complexType name="LocationFrom" mixed="true"/>
+	<xs:element name="LocationFrom" type="LocationFrom"/>
+	<xs:complexType name="LocationTo" mixed="true"/>
+	<xs:element name="LocationTo" type="LocationTo"/>
+	<xs:complexType name="CarrierEquipmentCode" mixed="true">
+		<xs:attribute name="Domain" use="required"/>
+	</xs:complexType>
+	<xs:element name="CarrierEquipmentCode" type="CarrierEquipmentCode"/>
+	<xs:complexType name="TransportName" mixed="true">
+		<xs:attribute name="TransportEquipmentType"/>
+	</xs:complexType>
+	<xs:element name="TransportName" type="TransportName"/>
+	<xs:complexType name="RequestedDocumentTypeCode" mixed="true">
+		<xs:attribute name="Domain" use="required"/>
+	</xs:complexType>
+	<xs:element name="RequestedDocumentTypeCode" type="RequestedDocumentTypeCode"/>
+	<xs:complexType name="DocumentRecipientInformation">
+		<xs:sequence>
+			<xs:element ref="DocumentRecipientPartner"/>
+			<xs:element ref="DocumentDeliveryMethod" minOccurs="0"/>
+			<xs:element ref="LanguageCode" minOccurs="0"/>
+			<xs:element ref="NumberOfOriginals" minOccurs="0"/>
+			<xs:element ref="NumberOfCopies" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="DeliveryMethodQualifier" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="Fax"/>
+					<xs:enumeration value="Mail"/>
+					<xs:enumeration value="Email"/>
+					<xs:enumeration value="Print"/>
+					<xs:enumeration value="Telex"/>
+					<xs:enumeration value="WithDriver"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="DocumentRecipientInformation" type="DocumentRecipientInformation"/>
+	<xs:complexType name="NationalPhoneNumber" mixed="true"/>
+	<xs:element name="NationalPhoneNumber" type="NationalPhoneNumber"/>
+	<xs:complexType name="InternationalPhoneNumber" mixed="true"/>
+	<xs:element name="InternationalPhoneNumber" type="InternationalPhoneNumber"/>
+	<xs:complexType name="Content" mixed="true"/>
+	<xs:element name="Content" type="Content"/>
+	<xs:complexType name="ExternalReference" mixed="true"/>
+	<xs:element name="ExternalReference" type="ExternalReference"/>
+	<xs:complexType name="PriceBasis">
+		<xs:sequence>
+			<xs:element ref="Measurement"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PriceBasis" type="PriceBasis"/>
+	<xs:complexType name="SpecifiedMeasurement">
+		<xs:sequence>
+			<xs:element ref="Measurement"/>
+		</xs:sequence>
+		<xs:attribute name="MeasurementQualifier" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="Over"/>
+					<xs:enumeration value="Under"/>
+					<xs:enumeration value="EqualTo"/>
+					<xs:enumeration value="Maximum"/>
+					<xs:enumeration value="Minimum"/>
+					<xs:enumeration value="Optional"/>
+					<xs:enumeration value="Recommended"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="SpecifiedMeasurement" type="SpecifiedMeasurement"/>
+	<xs:complexType name="DateTimeRange">
+		<xs:sequence>
+			<xs:element ref="FromDateTime"/>
+			<xs:element ref="ToDateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DateTimeRange" type="DateTimeRange"/>
+	<xs:complexType name="FinancialInstitutionName" mixed="true"/>
+	<xs:element name="FinancialInstitutionName" type="FinancialInstitutionName"/>
+	<xs:complexType name="FinancialInstitutionDFINumber" mixed="true"/>
+	<xs:element name="FinancialInstitutionDFINumber" type="FinancialInstitutionDFINumber"/>
+	<xs:complexType name="AccountNumber" mixed="true"/>
+	<xs:element name="AccountNumber" type="AccountNumber"/>
+	<xs:complexType name="CreditCardProvider" mixed="true"/>
+	<xs:element name="CreditCardProvider" type="CreditCardProvider"/>
+	<xs:complexType name="CreditCardNumber" mixed="true"/>
+	<xs:element name="CreditCardNumber" type="CreditCardNumber"/>
+	<xs:complexType name="CreditCardExpirationDate">
+		<xs:sequence>
+			<xs:element ref="DateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CreditCardExpirationDate" type="CreditCardExpirationDate"/>
+	<xs:complexType name="CardHolderName" mixed="true"/>
+	<xs:element name="CardHolderName" type="CardHolderName"/>
+	<xs:complexType name="MeasurementValue" mixed="true"/>
+	<xs:element name="MeasurementValue" type="MeasurementValue"/>
+	<xs:complexType name="UnitOfMeasureCode" mixed="true">
+		<xs:attribute name="Domain" use="required"/>
+	</xs:complexType>
+	<xs:element name="UnitOfMeasureCode" type="UnitOfMeasureCode"/>
+	<xs:complexType name="MinimumMeasurement">
+		<xs:sequence>
+			<xs:element ref="Measurement"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="MinimumMeasurement" type="MinimumMeasurement"/>
+	<xs:complexType name="MaximumMeasurement">
+		<xs:sequence>
+			<xs:element ref="Measurement"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="MaximumMeasurement" type="MaximumMeasurement"/>
+	<xs:complexType name="StandardCarrierAlphaCode" mixed="true"/>
+	<xs:element name="StandardCarrierAlphaCode" type="StandardCarrierAlphaCode"/>
+	<xs:complexType name="DocumentRecipientPartner">
+		<xs:sequence>
+			<xs:element ref="PartnerInformation"/>
+		</xs:sequence>
+		<xs:attribute name="PartnerRole" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="Bank"/>
+					<xs:enumeration value="Buyer"/>
+					<xs:enumeration value="Payer"/>
+					<xs:enumeration value="Scales"/>
+					<xs:enumeration value="Seller"/>
+					<xs:enumeration value="Sender"/>
+					<xs:enumeration value="ShipTo"/>
+					<xs:enumeration value="SoldTo"/>
+					<xs:enumeration value="Carrier"/>
+					<xs:enumeration value="Shipper"/>
+					<xs:enumeration value="Receiver"/>
+					<xs:enumeration value="ShipFrom"/>
+					<xs:enumeration value="Supplier"/>
+					<xs:enumeration value="Surveyor"/>
+					<xs:enumeration value="Consignee"/>
+					<xs:enumeration value="Inspection"/>
+					<xs:enumeration value="BillToParty"/>
+					<xs:enumeration value="CareOfParty"/>
+					<xs:enumeration value="Marketplace"/>
+					<xs:enumeration value="NotifyParty"/>
+					<xs:enumeration value="Manufacturer"/>
+					<xs:enumeration value="CustomsBroker"/>
+					<xs:enumeration value="AgencyOrDealer"/>
+					<xs:enumeration value="BeneficialOwner"/>
+					<xs:enumeration value="CommodityBroker"/>
+					<xs:enumeration value="AlternateCarrier"/>
+					<xs:enumeration value="FreightForwarder"/>
+					<xs:enumeration value="AdditionalCarrier"/>
+					<xs:enumeration value="UltimateConsignee"/>
+					<xs:enumeration value="LetterOfCreditBank"/>
+					<xs:enumeration value="ThirdPartyLogistics"/>
+					<xs:enumeration value="FinancialInstitution"/>
+					<xs:enumeration value="TransportationBroker"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="DocumentRecipientPartner" type="DocumentRecipientPartner"/>
+	<xs:complexType name="DocumentDeliveryMethod" mixed="true"/>
+	<xs:element name="DocumentDeliveryMethod" type="DocumentDeliveryMethod"/>
+	<xs:complexType name="NumberOfOriginals" mixed="true"/>
+	<xs:element name="NumberOfOriginals" type="NumberOfOriginals"/>
+	<xs:complexType name="NumberOfCopies" mixed="true"/>
+	<xs:element name="NumberOfCopies" type="NumberOfCopies"/>
+	<xs:complexType name="FromDateTime" mixed="true"/>
+	<xs:element name="FromDateTime" type="FromDateTime"/>
+	<xs:complexType name="ToDateTime" mixed="true"/>
+	<xs:element name="ToDateTime" type="ToDateTime"/>
+</xs:schema>
