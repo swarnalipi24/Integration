@@ -2,7 +2,7 @@ name: Push iFlows from IS_TEMP to Integration Suite
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/5 * * * *'
   push:
     branches:
       - IS_TEMP
