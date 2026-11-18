@@ -1,0 +1,24 @@
+name: Push iFlows to Integration Suite Design Time
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-to-tenant:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Sync iFlows to Design Package Only
+        uses: engswee/flashpipe-action/sync@v1
+        with:
+          HOST: ${{ vars.CPI_HOST_URL }}
+          OAUTH_HOST: ${{ secrets.CPI_TOKEN_URL }}
+          OAUTH_CLIENT_ID: ${{ secrets.CPI_CLIENT_ID }}
+          OAUTH_CLIENT_SECRET: ${{ secrets.CPI_CLIENT_SECRET }}
+          TARGET: tenant
+          PACKAGE_ID: ${{ vars.CPI_PACKAGE_ID }}
+          DIR_ARTIFACTS: ${{ github.workspace }}
